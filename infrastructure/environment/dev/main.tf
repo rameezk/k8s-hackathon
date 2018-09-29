@@ -24,3 +24,16 @@ module "cluster" {
 }
 
 
+resource "helm_release" "capture_order" {
+  name      = "kubernetes-dashboard"
+  chart     = "../../helm/captureorder"
+  namespace = "hackathon"
+  depends_on = ["module.cluster"]
+  force_update = true
+  recreate_pods = true
+
+}
+
+
+
+

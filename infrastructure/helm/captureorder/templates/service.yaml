@@ -1,14 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kibana
-  namespace: logging
+  name: captureorder
   labels:
-    app: kibana
+    app: captureorder
 spec:
   ports:
     - port: 8080
       protocol: TCP
       targetPort: ui
   selector:
-    app: kibana
+    app: captureorder
