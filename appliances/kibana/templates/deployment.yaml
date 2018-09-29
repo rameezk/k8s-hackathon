@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kibana
+  namespace: logging
+  labels:
+    app: kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kibana
+  template:
+    metadata:
+      labels:
+        app: kibana
+    spec:
+      containers:
+        - name: kibana
+          image: 440912845942.dkr.ecr.eu-west-1.amazonaws.com/kibana:latest
+          resources:
+            limits:
+              cpu: 1000m
+            requests:
+              cpu: 100m
+          env:
+            - name: ELASTICSEARCH_URL
+              value: http://elasticsearch-master:9200
+          ports:
+            - containerPort: 5601
+              name: ui
+              protocol: TCP
