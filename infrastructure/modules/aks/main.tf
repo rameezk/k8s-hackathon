@@ -15,7 +15,7 @@ resource "null_resource" "az_cli_login" {
     timestamp = "${timestamp()}"
   }
   provisioner "local-exec" {
-    command = "az login --service-principal -u ${var.azure_service_principal_id} -p ${var.azure_service_principal_secret} --tenant ${var.azure_tenant_id}"
+    command = "az login -u 'rameezkhan.sa@hotmail.com' -p 'Qi3NjLV7D?o6#2MqAAR(' --tenant ${var.azure_tenant_id}"
   }
 
 }

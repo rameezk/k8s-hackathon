@@ -3,7 +3,7 @@ module "cluster" {
 
   environment = "dev"
 
-  worker_node_vm_count = 3
+  worker_node_vm_count = 2
   worker_node_vm_type = "Standard_D2_v2"
   worker_node_vm_disk_size_gb = 50
 
@@ -15,7 +15,7 @@ module "cluster" {
   aad_server_app_secret = "${var.aad_server_app_secret}"
   aad_client_app_id = "${var.aad_client_app_id}"
   aad_tenant_id = "${var.aad_tenant_id}"
-  aad_admins_group_id = "07fbeae6-e110-47d3-b365-efe4d91aae19"
+  aad_admins_group_id = "6ba5839f-fc8b-4ae9-b26d-ae71df5d1145"
   aks_pod_cidr = "10.18.0.0/16"
   aks_service_cidr = "10.19.0.0/16"
 
