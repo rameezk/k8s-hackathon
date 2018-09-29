@@ -204,7 +204,7 @@ resource "null_resource" "configure_dns_for_ip" {
   depends_on = ["null_resource.ingress_controller"]
 
   provisioner "local-exec" {
-    command = "az network public-ip update --ids ${data.azurerm_public_ips.ingress_ip.public_ips.0.id} --dns-name ${var.environment}-aks-ingress"
+    command = "az network public-ip update --ids ${data.azurerm_public_ips.ingress_ip.public_ips.0.id} --dns-name paradis-pd-aks-ingress"
   }
 }
 

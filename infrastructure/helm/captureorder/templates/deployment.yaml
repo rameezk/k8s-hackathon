@@ -27,5 +27,7 @@ spec:
               value: paradise-pd
             - name: CHALLENGEAPPINSIGHTS_KEY
               value: helloworld
+            - name: MONGOURL
+              value: {{ .Values.mongoUrl }}
           ports:
             - containerPort: 8080

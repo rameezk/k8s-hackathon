@@ -32,6 +32,38 @@ resource "helm_release" "capture_order" {
   force_update = true
   recreate_pods = true
 
+  set {
+    name = "mongoUrl"
+    value = "mongodb://mongo-mongodb.hackathon"
+  }
+
+}
+
+resource "helm_release" "mongo" {
+  name      = "mongo"
+  chart     = "stable/mongodb"
+  namespace = "hackathon"
+  depends_on = ["module.cluster"]
+  force_update = true
+  recreate_pods = true
+
+  #TODO: change username and password
+  set {
+    name = "mongodbUsername"
+    value = "paradise"
+  }
+  set {
+    name = "mongodbPassword"
+    value = "paradise"
+  }
+  set {
+    name = "mongodbDatabase"
+    value = "order"
+  }
+  set {
+    name = "mongodbRootPassword"
+    value = "paradiseroot"
+  }
 }
 
 
