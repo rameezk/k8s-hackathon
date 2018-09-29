@@ -28,7 +28,7 @@ resource "helm_release" "capture_order" {
   name      = "captureorder"
   chart     = "../../helm/captureorder"
   namespace = "hackathon"
-  depends_on = ["module.cluster"]
+  depends_on = ["module.cluster","null_resource.capture_order_certificate"]
   force_update = true
   recreate_pods = true
 
@@ -37,7 +37,65 @@ resource "helm_release" "capture_order" {
     value = "mongodb://mongo-mongodb.hackathon"
   }
 
+  set {
+    name  = "ingress.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "ingress.hosts[0]"
+    value = "captureorder.apps.paradise-pd-k8s-hackathon.tk"
+  }
+
+  set {
+    name  = "ingress.tls[0].hosts[0]"
+    value = "captureorder.apps.paradise-pd-k8s-hackathon.tk"
+  }
+
+  set {
+    name  = "ingress.tls[0].secretName"
+    value = "capture-order-tls"
+  }
+
 }
+
+
+resource "null_resource" "capture_order_certificate" {
+
+  triggers {
+    namespace = "hackathon"
+  }
+
+
+  depends_on = ["module.cluster"]
+
+  provisioner "local-exec" {
+    command = <<EOT
+
+cat <<EOF | kubectl apply -f -
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: capture-order-tls
+spec:
+  secretName: capture-order-tls
+  dnsNames:
+  - captureorder.apps.paradise-pd-k8s-hackathon.tk
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - captureorder.apps.paradise-pd-k8s-hackathon.tk
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+EOF
+
+EOT
+  }
+}
+
 
 resource "helm_release" "mongo" {
   name      = "mongo"
