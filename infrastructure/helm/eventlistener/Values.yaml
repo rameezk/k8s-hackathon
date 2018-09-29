@@ -1,0 +1,2 @@
+rabbitMqUrl: "amqp://paradise:paradise@rabbitmq:5672"
+processedEndpoint: "http://fulfillmentorder.hackathon:8080/v1/order"

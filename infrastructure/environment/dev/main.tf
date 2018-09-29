@@ -34,7 +34,12 @@ resource "helm_release" "capture_order" {
 
   set {
     name = "mongoUrl"
-    value = "mongodb://mongo-mongodb.hackathon"
+    value = "mongodb://paradise:paradise@mongo-mongodb.hackathon"
+  }
+
+  set {
+    name = "rabbitMqUrl"
+    value = "amqp://paradise:paradise@rabbitmq:5672"
   }
 
   set {
@@ -57,13 +62,18 @@ resource "helm_release" "capture_order" {
     value = "capture-order-tls"
   }
 
+  set {
+    name = "ingress.path"
+    value = "captureorder.apps.paradise-pd-k8s-hackathon.tk"
+  }
+
 }
 
 
 resource "null_resource" "capture_order_certificate" {
 
   triggers {
-    namespace = "hackathon"
+    namespace = "1"
   }
 
 
@@ -77,6 +87,7 @@ apiVersion: certmanager.k8s.io/v1alpha1
 kind: Certificate
 metadata:
   name: capture-order-tls
+  namespace: hackathon
 spec:
   secretName: capture-order-tls
   dnsNames:
@@ -99,6 +110,7 @@ EOT
 
 resource "helm_release" "mongo" {
   name      = "mongo"
+  version   = "2.0.0"
   chart     = "stable/mongodb"
   namespace = "hackathon"
   depends_on = ["module.cluster"]
@@ -116,11 +128,11 @@ resource "helm_release" "mongo" {
   }
   set {
     name = "mongodbDatabase"
-    value = "order"
+    value = "k8orders"
   }
   set {
     name = "mongodbRootPassword"
-    value = "paradiseroot"
+    value = "paradise"
   }
 }
 
@@ -128,15 +140,86 @@ resource "helm_release" "fulfill_order" {
   name      = "fulfillorder"
   chart     = "../../helm/fulfillorder"
   namespace = "hackathon"
-  depends_on = ["module.cluster"]
+  depends_on = ["module.cluster", "null_resource.azure_file_storage_class"]
   force_update = true
   recreate_pods = true
 
   set {
     name = "mongoUrl"
-    value = "mongodb://mongo-mongodb.hackathon"
+    value = "mongodb://paradise:paradise@mongo-mongodb.hackathon"
   }
 
+}
+
+resource "helm_release" "rabbiqmq" {
+  name      = "rabbitmq"
+  chart     = "stable/rabbitmq"
+  namespace = "hackathon"
+  depends_on = ["module.cluster"]
+  force_update = true
+  recreate_pods = true
+
+  set {
+    name = "rabbitmq.username"
+    value = "paradise"
+  }
+
+  set {
+    name = "rabbitmq.password"
+    value = "paradise"
+  }
+}
+
+resource "helm_release" "eventlistener" {
+  name      = "eventlistener"
+  chart     = "../../helm/eventlistener"
+  namespace = "hackathon"
+  depends_on = ["module.cluster"]
+  force_update = true
+  recreate_pods = true
+
+  set {
+    name = "rabbitMqUrl"
+    value = "amqp://paradise:paradise@rabbitmq:5672"
+  }
+
+  set {
+    name = "processedEndpoint"
+    value = "http://fulfillorder.hackathon:8080/v1/order"
+  }
+
+}
+
+resource "null_resource" "azure_file_storage_class" {
+
+  triggers {
+    namespace = "3"
+  }
+
+
+  depends_on = ["module.cluster"]
+
+  provisioner "local-exec" {
+    command = <<EOT
+
+cat <<EOF | kubectl apply -f -
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: azurefile
+provisioner: kubernetes.io/azure-file
+mountOptions:
+  - dir_mode=0777
+  - file_mode=0777
+  - uid=1000
+  - gid=1000
+parameters:
+  skuName: Standard_LRS
+  storageAccount: paradisepdstorage
+EOF
+
+EOT
+  }
 }
 
 

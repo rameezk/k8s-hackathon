@@ -1,29 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: captureorder
+  name: eventlistener
   labels:
-    app: captureorder
+    app: eventlistener
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: captureorder
+      app: eventlistener
   template:
     metadata:
       labels:
-        app: captureorder
+        app: eventlistener
     spec:
-      volumes:
-        - name: orders
-          persistentVolumeClaim:
-            claimName: orders
       containers:
-        - name: captureorder
-          volumeMounts:
-          - name: orders
-            mountPath: /orders
-          image: torosent/captureorderack
+        - name: eventlistener
+          image: torosent/rabbitmqlistenerack
           resources:
             limits:
               cpu: 500m
@@ -34,11 +27,9 @@ spec:
               value: paradise-pd
             - name: CHALLENGEAPPINSIGHTS_KEY
               value: helloworld
-            - name: MONGOURL
-              value: {{ .Values.mongoUrl }}
             - name: AMQPURL
               value: {{ .Values.rabbitMqUrl }}
+            - name: PROCESSENDPOINT
+              value: {{ .Values.processedEndpoint }}
           ports:
             - containerPort: 8080
-              name: http
-              protocol: TCP

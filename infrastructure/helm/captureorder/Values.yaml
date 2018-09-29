@@ -1,1 +1,16 @@
 mongoUrl: "mongodb://mongo-mongodb.hackathon"
+rabbitMqUrl: "amqp://rabbitmq:5672"
+
+ingress:
+  enabled: true
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/rewrite-target: /
+  path: /
+  hosts:
+  - captureorder.apps.paradise-pd-k8s-hackathon.tk
+  tls:
+  - secretName: seb-dev-tls
+    hosts:
+    -  captureorder.apps.paradise-pd-k8s-hackathon.tk

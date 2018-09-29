@@ -24,9 +24,9 @@ spec:
     - host: {{ . }}
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: "/"
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: captureorder
               servicePort: http
   {{- end }}
 

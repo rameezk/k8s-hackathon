@@ -14,8 +14,15 @@ spec:
       labels:
         app: fulfillorder
     spec:
+      volumes:
+        - name: orders
+          persistentVolumeClaim:
+            claimName: orders
       containers:
         - name: fulfillorder
+          volumeMounts:
+          - name: orders
+            mountPath: /orders
           image: torosent/fulfillorderack
           resources:
             limits:
