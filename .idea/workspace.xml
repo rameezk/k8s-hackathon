@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="beaa5995-abfc-4c55-8f8c-0243b25a8b9d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/infrastructure/helm/captureorder/templates/ingress.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appliances/captureorder/Chart.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/helm/captureorder/Chart.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appliances/captureorder/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/helm/captureorder/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appliances/captureorder/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/helm/captureorder/templates/service.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/environment/dev/.terraform/modules/44e0b5b7447844a28d82cf91f1850a53" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/environment/dev/.terraform/modules/44e0b5b7447844a28d82cf91f1850a53" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infrastructure/environment/dev/main.tf" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/environment/dev/main.tf" afterDir="false" />
     </list>
@@ -28,29 +26,30 @@
           <entry key="tf" value="7" />
           <entry key="tfvars" value="1" />
           <entry key="tpl" value="1" />
-          <entry key="yaml" value="3" />
+          <entry key="txt" value="1" />
+          <entry key="yaml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Kubernetes YAML" value="3" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="Kubernetes YAML" value="4" />
+          <entry key="PLAIN_TEXT" value="2" />
           <entry key="Terraform" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="tf" value="90" />
+          <entry key="tf" value="159" />
           <entry key="tfvars" value="1" />
           <entry key="tpl" value="1" />
-          <entry key="yaml" value="13" />
+          <entry key="yaml" value="28" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kubernetes YAML" value="13" />
+          <entry key="Kubernetes YAML" value="28" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="Terraform" value="91" />
+          <entry key="Terraform" value="160" />
         </counts>
       </usages-collector>
     </session>
@@ -78,8 +77,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/service.yaml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="20" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="20" />
+            <state relative-caret-position="136">
+              <caret line="8" column="16" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -87,8 +86,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/infrastructure/environment/dev/main.tf">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="185">
+              <caret line="76" column="17" lean-forward="true" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/ingress.yaml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -109,6 +117,7 @@
         <option value="$PROJECT_DIR$/modules/aks/outputs.tf" />
         <option value="$PROJECT_DIR$/infrastructure/helm/captureorder/Chart.yaml" />
         <option value="$PROJECT_DIR$/infrastructure/helm/captureorder/templates/service.yaml" />
+        <option value="$PROJECT_DIR$/infrastructure/helm/captureorder/templates/ingress.yaml" />
         <option value="$PROJECT_DIR$/infrastructure/environment/dev/main.tf" />
       </list>
     </option>
@@ -195,7 +204,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538214409316" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538217467060" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -208,6 +217,7 @@
       <recent name="C:\Users\QXW0465\workspace\hackathon\k8s-hackathon\infrastructure\helm" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\QXW0465\workspace\hackathon\k8s-hackathon\infrastructure\helm\captureorder\templates" />
       <recent name="C:\Users\QXW0465\workspace\hackathon\k8s-hackathon\environment\dev" />
     </key>
   </component>
@@ -324,6 +334,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/ingress.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/service.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/deployment.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -331,17 +355,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/templates/service.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="20" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/infrastructure/helm/captureorder/ingress.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/environment/dev/main.tf">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="185">
+          <caret line="76" column="17" lean-forward="true" selection-start-line="76" selection-start-column="17" selection-end-line="76" selection-end-column="17" />
         </state>
       </provider>
     </entry>
