@@ -25,7 +25,7 @@ module "cluster" {
 
 
 resource "helm_release" "capture_order" {
-  name      = "kubernetes-dashboard"
+  name      = "captureorder"
   chart     = "../../helm/captureorder"
   namespace = "hackathon"
   depends_on = ["module.cluster"]
