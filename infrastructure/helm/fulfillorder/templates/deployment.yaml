@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fulfillorder
+  labels:
+    app: fulfillorder
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fulfillorder
+  template:
+    metadata:
+      labels:
+        app: fulfillorder
+    spec:
+      containers:
+        - name: fulfillorder
+          image: torosent/fulfillorderack
+          resources:
+            limits:
+              cpu: 500m
+            requests:
+              cpu: 100m
+          env:
+            - name: TEAMNAME
+              value: paradise-pd
+            - name: CHALLENGEAPPINSIGHTS_KEY
+              value: helloworld
+            - name: MONGOURL
+              value: {{ .Values.mongoUrl }}
+          ports:
+            - containerPort: 8080

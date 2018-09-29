@@ -66,6 +66,19 @@ resource "helm_release" "mongo" {
   }
 }
 
+resource "helm_release" "fulfill_order" {
+  name      = "fulfillorder"
+  chart     = "../../helm/fulfillorder"
+  namespace = "hackathon"
+  depends_on = ["module.cluster"]
+  force_update = true
+  recreate_pods = true
 
+  set {
+    name = "mongoUrl"
+    value = "mongodb://mongo-mongodb.hackathon"
+  }
+
+}
 
 

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fulfillorder
+  labels:
+    app: fulfillorder
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: fulfillorder
