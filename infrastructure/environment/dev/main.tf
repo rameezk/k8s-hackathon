@@ -193,7 +193,7 @@ resource "helm_release" "eventlistener" {
 resource "null_resource" "azure_file_storage_class" {
 
   triggers {
-    namespace = "3"
+    namespace = "4"
   }
 
 
